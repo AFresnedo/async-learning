@@ -3,22 +3,28 @@ var async = require('async');
 
 // functions
 function fn1(callback) {
-  console.log(1);
-  // callback(err, results)
-  callback(null, 1);
+  setTimeout(function() {
+    console.log(1);
+    // callback(err, results)
+    callback(null, 1);
+  }, 5000);
 }
 function fn2(callback) {
-  console.log(2);
-  // callback(err, results)
-  callback(null, 2);
+  setTimeout(function() {
+    console.log(2);
+    // callback(err, results)
+    callback(null, 2);
+  }, 1000);
 }
 function fn3(callback) {
-  console.log(3);
-  // callback(err, results)
-  callback(null, 3);
+  setTimeout(function() {
+    console.log(3);
+    // callback(err, results)
+    callback(null, 3);
+  }, 10000);
 }
 
-async.series([fn1, fn2, fn3], function(err, results) {
+async.parallel([fn1, fn2, fn3], function(err, results) {
   console.log('Done!');
   console.log(results);
 });
